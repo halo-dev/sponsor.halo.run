@@ -1,1 +1,1 @@
-<sponsor.halo.run>
+https://sponsor.halo.run

@@ -1,11 +1,10 @@
 <!-- 
-  Merger - Merge Your Qrcode Together. Even Quicker.
+  Merger v0.26.1 - Merge Your Qrcode Together. Even Quicker.
   User docs: https://docs.justhx.com/merger
   Released under GNU General Public License v3.0. Open source at https://github.com/hifocus/merger.
   Author @hifocus (https://github.com/hifocus), @LF112 (https://github.com/LF112)
   Please preserve the copywrite notices above as required by the license.
  -->
-
 <!DOCTYPE html>
 
 <html>
@@ -19,119 +18,119 @@
     <!-- Upgrade HTTP Connections to HTTPS - Default -->
     <link rel="shortcut icon" type="image/x-icon" id="favicon"><!-- There is no need to set the page icon manually -->
 
-    <!-- Load style files from local -->
-    <!-- <link rel="stylesheet" href="assets/styles/spectre.css/spectre-modified.min.css">
-    <link rel="stylesheet" href="assets/styles/style.css"> -->
-
     <!-- Load style files from jsDelivr - Default -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/hifocus/merger@0.20/assets/styles/spectre.css/spectre-modified.min.css,gh/hifocus/merger@0.20/assets/styles/style.min.css">
-    
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/combine/gh/hifocus/merger@0.26.1/assets/styles/spectre.css/spectre-modified.min.css,gh/hifocus/merger@0.26.1/assets/styles/style.min.css">
+
+    <!-- Load style files from local -->
+    <!-- <link rel="stylesheet" href="https://unpkg.zhimg.com/qr-merger@0.26.1/assets/styles/spectre.css/spectre-modified.min.css">
+    <link rel="stylesheet" href="https://unpkg.zhimg.com/qr-merger@0.26.1/assets/styles/style.min.css"> -->
 </head>
 
 <body>
 
     <script>
         // Config Section - Please follow the instruction
-        // Replace with your own qrcode (or paypal) links
-        // If you do not own any of the payment methods below, or do not want them to be published, just leave the variable empty or delete it to prevent confusion
-
-        var usage = "donate"; // Available variables: `payment`, `donate`, unavailable if multilingual is disabled
-        var wechat = "wxp://f2f0S9f-ERjL6SIwusnqtkgmfAmV_wkeaJgk";
-        var alipay = "HTTPS://QR.ALIPAY.COM/FKX06913EXAQ26TWNXYK4A?t=1545560753528";
-        var tenpay = "https://i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&f=wallet&u=709831589&a=1&n=doSthNiubility.&ac=802B3FD44ED685310C94CF2C742E1FF5EC6344ABCFD06ADD641E6E881448CEB1";
-        var paypal = "https://paypal.me/ruibaby";
+        // Please read the document - https://docs.justhx.com/merger
 
         // Replace with your preferred name and profile photo link below
-        // Please note there is a multilingual support function enabled by default below
+        // Please note the multilingual support function enabled by default below
         var myname = "Halo Organization";
-        var profile = "./assets/images/48195280.png"; // Please note that the profile image has to be served via HTTPS otherwise will not be loaded
+        // var profile = "hi@halo.run"; // Enter a image url or your gravatar email, or leave the variable blank to use the default avatar
+        var profile = "./assets/images/48195280.png";
 
+        // If you do not own any of the payment methods below, or do not want them to be published, just leave the variable empty or delete it to prevent confusion
+        var usage = "donate"; // Available variables: `payment`, `donate`, ineffective if multilingual is disabled
+        var wechat = "wxp://f2f0bZO8NprcBdb8BU9d-7kFY7iSoRgkSdSP";
+        var alipay = "https://qr.alipay.com/fkx19264qywvciaa3430a48";
+        var paypal = "https://paypal.me/ruibaby";
+
+        // Multilingual Support
+        var multilingual = true; // Set variable to false to disable multilingual feature
+        var myname_hans = myname // Default setting for Chinese Simplified users; change it to a speicify value if needed
+        var myname_hant = myname; // Choose how you want your name to be displayed for Traditional Chinese users
+        var myname_eng = myname; // Choose how you want your name to be displayed for English / Non-Chinese users
 
         // Dynamic Page Title Supoort
         // Merger now supports dynamic page tile, however it's your freedom to choose whether you want to brand merger
         // If you set branding to true, there will be a `| Merger` added after the preset page title
         var branding = true; // Set variable to `false` to disable branding
 
-        // Multilingual Support
-        // If you are a non-Chinese user and wish to enable multilingual, set below to true (default) and leave everything else blank
-        var multilingual = true; // Set variable to false to disable multilingual feature
-        var myname_hans = myname // Default setting for Chinese Simplified users; change it to a speicify value if needed
-        var myname_hant = "Halo Organization"; // Choose how you want your name to be displayed for Traditional Chinese users
-        var myname_eng = "Halo Organization"; // Choose how you want your name to be displayed for English / Non-Chinese users
-
         // Customise pay instruction
         // Will only be effective if multilingual function is disabled
         var title = "选择你的赞助方式";
-        var subtitle = "跟随进一步的指示以向" + myname + "付款"; // Do not change the `finalname` variable here
+        var subtitle = "跟随进一步的指示以向" + myname + "付款"; // Do not change the `myname` variable here
 
         // QQ Mobile wouldn't decode qrcode from `data:image`, so for qq mobile only speical qrcode that generate from qrcode api is necessary
         var qrcodeapi = "https://www.zhihu.com/qrcode?url="; // Please note that the API has to support HTTPS connection otherwise will not be loaded
+        var gravatar_url = "https://www.gravatar.com/avatar/"; // You can set your preferred gravatar source (mirror) here; stay default if you cannot decide which source you'd prefer
     </script>
 
     <div class="main" id="h">
         <i id="i"></i>
 
-        <h2 id="name"></h2>
-        <p id="description"></p>
+        <div class="texts">
+            <h2 id="name"></h2>
+            <p id="description"></p>
+        </div>
 
-        <!-- Button Part Starts -->
+        <!-- Button Section Starts -->
         <div id="pending">
             <p id="depends" class="middlebtn">
                 <a href="#showqrcode" class="btn btn-primary" id="tenpaybtn" onclick="opentenpay()"><svg class="icon"
                         aria-hidden="true">
                         <use xlink:href="#icon-QQ"></use>
-                    </svg></a>
+                    </svg></a><span></span>
                 <a href="#showqrcode" class="btn btn-primary" id="toclick" onclick="openwechat()"><svg class="icon"
                         aria-hidden="true">
                         <use xlink:href="#icon-weixinzhifu"></use>
-                    </svg></a>
+                    </svg></a><span></span>
                 <a href="#showqrcode" class="btn btn-primary" id="alipaybtn" onclick="openalipay()"><svg class="icon"
                         aria-hidden="true">
                         <use xlink:href="#icon-iconfontrectangle390"></use>
-                    </svg></a>
+                    </svg></a><span></span>
                 <button class="btn btn-primary" id="paypalbtn" onclick="openbox()"><svg class="icon paypal-wide"
                         aria-hidden="true">
                         <use xlink:href="#icon-paypal"></use>
                     </svg></button>
             </p>
         </div>
+    </div>
 
-        <!-- Button Part Ends -->
+    <!-- Button Section Ends -->
 
-        <!-- Modal Part Starts -->
-        <div class="modal" id="showqrcode">
-            <div class="modal-container" role="document">
-                <div class="modal-header" id="btncontainer">
-                    <a href="#" class="btn btn-clear float-right" id="qrcodeclose" aria-label="Close"></a>
-                    <div id="titleinfo" class="modal-title h5" style="text-align: center"></div>
-                </div>
-                <div class="modal-body">
-                    <div class="content" id="qrcontainer">
-                        <div id="currentqrcode" class="img smaller"></div> <!-- qrcode imported here -->
-                        <img id="tenpayonly" class="img smaller"> <!-- if mobile qq, qrcode imported here -->
-                    </div>
+    <!-- Modal Section Starts -->
+    <div class="modal" id="showqrcode">
+        <div class="modal-container" role="document">
+            <div class="modal-header" id="btncontainer">
+                <a href="#" class="btn btn-clear float-right" id="qrcodeclose" aria-label="Close"></a>
+                <div id="titleinfo" class="modal-title h5" style="text-align: center"></div>
+            </div>
+            <div class="modal-body">
+                <div class="content" id="qrcontainer">
+                    <div id="currentqrcode" class="img smaller"></div>
+                    <img id="tenpayonly" class="img smaller">
                 </div>
             </div>
         </div>
-        <!-- Modal Part Ends -->
     </div>
+    <!-- Modal Section Ends -->
+
+
 
     <!-- Footer Scripts -->
     <!-- Please do not swap orders -->
     <!-- Load Javascript files from jsDelivr - Default -->
-    <script src="https://cdn.jsdelivr.net/combine/gh/hifocus/merger@0.20/assets/js/jQuery/jquery.min.js,gh/hifocus/merger@0.20/assets/js/jquery-qrcode/jquery-qrcode.min.js,gh/hifocus/merger@0.20/assets/js/function.min.js,gh/hifocus/merger@0.20/assets/js/font_974919_xgtacm93vxp.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/combine/npm/jquery@3"></script>
+    <script
+        src="https://cdn.jsdelivr.net/combine/gh/lrsjng/jquery-qrcode@0.18.0/dist/jquery-qrcode.min.js,npm/blueimp-md5@2.18.0/js/md5.min.js,gh/hifocus/merger@0.26.1/assets/js/function.min.js,gh/hifocus/merger@0.26.1/assets/js/font_974919_xgtacm93vxp.min.js"></script>
+
     <!-- Load Javascript files from local -->
-    <!-- <script src="assets/js/jQuery/jquery.min.js"></script>
-    <script src="assets/js/jquery-qrcode/jquery-qrcode.min.js"></script>
-    <script src="assets/js/dev-files/function.original.js"></script>
-    <script src="assets/js/font_974919_xgtacm93vxp.js"></script> -->
-
-    <script>
-        // Set page favicon using jQuery
-        $("#favicon").attr("href", profile);
-    </script>
-
+    <!-- <script src="https://unpkg.zhimg.com/jquery@3/dist/jquery.min.js"></script>
+    <script src="https://unpkg.zhimg.com/jquery-qrcode2@latest/dist/jquery-qrcode.min.js"></script>
+    <script src="https://unpkg.zhimg.com/blueimp-md5@2/js/md5.min.js"></script>
+    <script src="https://unpkg.zhimg.com/qr-merger@0.26.1/assets/js/function.min.js"></script>
+    <script src="https://unpkg.zhimg.com/qr-merger@0.26.1/assets/js/font_974919_xgtacm93vxp.min.js"></script> -->
 </body>
 
 </html>
